@@ -1,0 +1,359 @@
+Skip to content
+DEV Community
+Search...
+
+Log in
+Create account
+
+25
+
+10
+
+35
+
+Cover image for How to build HTML-like forms with GitHub
+GitHub profile imageMichelle Mannering
+Michelle Mannering for GitHub
+Posted on Aug 9, 2021 • Updated on Feb 23
+
+How to build HTML-like forms with GitHub
+#
+github
+#
+tutorial
+Git Good (9 Part Series)
+1
+Using the GitHub CLI to update your repo
+2
+How to create and pin a gist on GitHub
+...
+5 more parts...
+8
+How to use GitHub Pages to host your website, even with multiple repos
+9
+How to create a Profile README for your Organisation
+Have you ever built an issue template, or asked people to fill out a GitHub issue with specific information, only to realise they haven't put in any details? Well, gone are those days with the new GitHub Issues.
+
+Now you can create GitHub Issue templates that function as Google-like forms. You can request specific information, add check boxes, and make certain fields required so you get all the details you need.
+
+This is super handy for bug reports, feature requests, and more. Let's take a look at these forms and how to build one.
+
+What does a GitHub Issue form look like?
+GitHub Issue forms look and function similar to a standard HTML form, but in an issue. This is a short form I built for users to request demos from me while I'm on a live stream.
+
+Issue form
+
+You can see I ask the user to select the "type" of demo they'd like to see. This is a drop down that allows me to write the types of demos I can users to choose from. The "More information" section is a text box where users can add more details. You'll see the red asterisk * next to "type" and "More information". This means these fields are required. The user will not be able to submit the issue without filling these out.
+
+Then there's an optional small text box to add user details. Hopefully that makes a little bit of sense. I'm going to create a new GitHub Issue Form and step through how to do this.
+
+Step 1. Create the GitHub Issue Form file
+If you haven't used Issue templates before, you'll need to create a location for them. All GitHub Issue templates, including GitHub Issue Form templates, live under the ISSUE_TEMPLATE folder under the .github folder in your repo. Navigate to the "code" tab under your repo and see if you have the folder .github → ISSUE_TEMPLATE.
+
+If you don't have this folder, create it. You can do this by clicking "Add file" "Create new file".
+
+Once the screen loads, click where it says "Name your file...":
+
+name your file
+
+Type ".github / ISSUE_TEMPLATE /" from your keyboard. You'll notice two new 'folders' has been created and can add a new file:
+
+Template file
+
+Name your file. Since this is a GitHub Issue Form, we want to name it something that ends in *.yml because GitHub Issue Forms are run on yaml files:
+
+Request2
+
+You might also notice a blue box appear:
+
+Documentation
+
+This link will take you to GitHub Docs. It has a a great explanation on how to work with Issue templates. Save this link for later and come back to it if you ever get stuck with issue templates.
+
+Back to our file, scroll down and click "Commit new file":
+Commit5
+
+You can add a commit message if you like.
+
+Step 2. Initialising the Issue Form
+Now we have a blank yaml file. Since you have a blank file, you might have a red error box saying there's a problem with the template. Don't worry, because now we're going to build it out.
+
+Click the pencil on the right to "Edit this file".
+
+We need to initialise this template as an issue form. We'll need to add the name of the template. This is also the description that will appear when someone wants to fill out the form. We also need a title which will show when someone opens a blank issue from this template.
+
+Do this by adding the following code:
+name: NAME_OF_TEMPLATE
+description: DESCRIPTION
+title: 
+You can also add labels. These might already have setup in your repo. Add assignees if you want to assign someone to the form.
+
+My form is going to be for requesting specific tips on a stream, or tips to write in a DEV post. Here's what my issue form currently looks like:
+
+Issue form 1
+
+Once you have this part complete you can add all the information to build out the form. Fun fact: the above two steps are the same if you were building a standard issue template.
+
+Step 3. Building out the Issue Form
+Now we can add all the fancy features that make this a GitHub Issue Form.
+
+Firstly, add body: with the same indentation as
+name:
+name: Tip Request
+description: Request a GitHub Tip from MishManners
+title: "[Tip]: I want "
+labels: [Tip, enhancement]
+assignees:
+  - mishmanners
+body:
+Next, add the various elements you'll want for your Issue form. The types of things you can have in an Issue form include:
+
+markdown: a place where you can write a message or leave information for the person filling out the form. Text such as "thanks for taking the time to fill out this form" is helpful. You need to have more than markdown to make this file an issue form. So you can also add:
+input: a small area for users to write text. Useful for short answers
+textarea: a field where users can write text. Useful for longer answers
+checkboxes: for users to mark off
+dropbown: for users to select specific answers
+Under each element, you'll need to add some things:
+
+id: name of the element (this is more for your reference and won't show up on the form itself)
+attributes. Under attributes, you'll need to add the following:
+label: heading for this part of the form
+description: short description that will appear under the heading
+Depending on what you chose above for the element, you'll have more options. If this is a textarea you'll need to add render to tell it what kind of textarea it is. If you added dropdown or checkboxes you'll need to provide the options, and if you used input you can add a placeholder value.
+validations: finally, you'll need to add whether this section of the form is required. This is a boolean, so you'll need to provide either true or false.
+If you've sorted out what kind of things you want for your form, and added the correct code, your template should look something like this:
+name: Tip Request
+description: Request a GitHub Tip from MishManners
+title: "[Tip]: I want "
+labels: [Tip, enhancement]
+assignees:
+  - mishmanners
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for asking Mish for a Tip. Tune into a Live stream or read Mish's articles on DEV for great GitHub tips.
+  - type: input
+    id: Name
+    attributes:
+      label: Name of GitHub Tip
+      description: What is the name of this GitHub Tip?
+      placeholder: ex. GitHub Issue Forms
+    validations:
+      required: true
+
+  - type: textarea
+    id: info
+    attributes:
+      label: More information
+      description: Add more information on the tip you would like to see.
+      render: shell
+    validations:
+      required: true
+
+  - type: dropdown
+    id: Level
+    attributes:
+      label: What kind of level is this tip?
+      description: What level of developer do you tthink this tip is aimed at?
+      options:
+        - Beginner
+        - Intermediate
+        - Advanced
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: location
+    attributes:
+      label: Where do you want this GitHub Tip?
+      description: Where would you like to see this GitHub Tip? You can select more than one.
+      options:
+        - label: Twitch
+          required: false
+        - label: DEV post
+          required: false
+        - label: YouTube video (longer)
+          required: false
+        - label: Twitter video (shorter)
+          required: false
+Click "Start commit":
+
+Commit
+
+Add a commit message if you like and click "Commit changes". If the code above is working (feel free to copy and paste mine to compare) there shouldn't be any errors when you committed the code. Read more about the types of syntax required for GitHub Issue Forms over on the GitHub Docs. If you have an error 🔴, skip step 4, and jump down to the "HELP 🔴" step.
+
+Step 4. Fill out your form
+Your form should now be complete! Now to test it:
+
+Go to the repository where you made the template
+Click the "Issues" tab
+Click "New Issue"
+Select the issue template you just created.
+Mine is called "Tip Request" since this was the I have under name: in my template file.
+
+Click "Get Started" and your issue form should be displayed.
+
+This is what mine looks like:
+
+GitHub Issue Form
+
+You can see all the elements in the form that were added into the file. You can see the red asterisk * next to required fields.
+
+Check out this form and match it up to the code aboveabove.
+
+Step HELP 🔴 Get GitHub to help you build the form
+One thing I love about GitHub Issue Forms is that if you get stuck building your template, GitHub is pretty good at helping you. For example, if you commit your code and you forgot to add a certain element, GitHub will give you an error, such as this:
+
+Body error
+
+This error means that the forth element in my form (body[4]) is missing one of its options. If we go back and compare the code, I can see that the forth element is the checkboxes at the end of the form and they don't have any options:
+
+Code body4
+
+All I need to do is add the options like this:
+
+Error fix
+
+If all this sounds really scary, or you're not sure where to start, or how to fix errors, GitHub can help. When you're creating your template, on the right hand side, you'll see some options to help you:
+
+options
+
+This handy configuration helper provides information on what needs to be included in the yaml file. There are code snippets to copy and paste and lots of information. It makes building these issue forms much easier and has helpful explanations about all the fields.
+
+GitHub Issue Forms are still in beta
+As of right now (August 2021), GitHub Issue forms are still in beta.
+
+If you're reading this and issue templates are still in beta, then you might notice a Beta tag when you were creating the yaml file. Feedback is always super welcome and I promise the GitHub team reads every single piece of feedback and all suggestions.
+
+If you'd like to give feedback on GitHub Issue forms, or any other feature, visit our Discussions Feedback.
+
+How will you be using GitHub issues?
+
+Git Good (9 Part Series)
+1
+Using the GitHub CLI to update your repo
+2
+How to create and pin a gist on GitHub
+...
+5 more parts...
+8
+How to use GitHub Pages to host your website, even with multiple repos
+9
+How to create a Profile README for your Organisation
+Discussion (2)
+Subscribe
+pic
+Add to the discussion
+ 
+alexweininger profile image
+Alex Weininger
+•
+Aug 11 '21
+
+This is so freaking cool!
+
+
+2
+ likes
+Reply
+ 
+markgoho profile image
+Mark Goho
+•
+Aug 17 '21
+
+WOW! 🤯
+
+
+1
+ like
+Reply
+Code of Conduct • Report abuse
+Read next
+daniloab profile image
+How to keep your repo package dependencies up to date automatically
+Danilo Assis - Feb 10
+
+santosh profile image
+Automate HTTPS Certificates with Ansible Roles ft. Let's Encrypt & CloudFlare
+Santosh Kumar - Feb 5
+
+melcor76 profile image
+Angular Error Interceptor
+Michael Karén - Feb 14
+
+ilya_azovtsev profile image
+How to use JavaScript feature toggles to deploy safely [React.js example with Dev.to App]
+Ilya Azovtsev - Feb 15
+
+
+GitHub
+Follow
+More from GitHub
+Three steps to better account security
+#security #github #ato #webdev
+Deploying My Probot App to a Serverless Lambda
+#github #aws #tutorial #devops
+Automating GitHub Org Invitations
+#github #devops #opensource #tutorial
+name: Tip Request
+description: Request a GitHub Tip from MishManners
+title: "[Tip]: I want "
+labels: [Tip, enhancement]
+assignees:
+  - mishmanners
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for asking Mish for a Tip. Tune into a Live stream or read Mish's articles on DEV for great GitHub tips.
+  - type: input
+    id: Name
+    attributes:
+      label: Name of GitHub Tip
+      description: What is the name of this GitHub Tip?
+      placeholder: ex. GitHub Issue Forms
+    validations:
+      required: true
+
+  - type: textarea
+    id: info
+    attributes:
+      label: More information
+      description: Add more information on the tip you would like to see.
+      render: shell
+    validations:
+      required: true
+
+  - type: dropdown
+    id: Level
+    attributes:
+      label: What kind of level is this tip?
+      description: What level of developer do you tthink this tip is aimed at?
+      options:
+        - Beginner
+        - Intermediate
+        - Advanced
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: location
+    attributes:
+      label: Where do you want this GitHub Tip?
+      description: Where would you like to see this GitHub Tip? You can select more than one.
+      options:
+        - label: Twitch
+          required: false
+        - label: DEV post
+          required: false
+        - label: YouTube video (longer)
+          required: false
+        - label: Twitter video (shorter)
+          required: false
+DEV Community — A constructive and inclusive social network for software developers. With you every step of your journey.
+
+Built on Forem — the open source software that powers DEV and other inclusive communities.
+
+Made with love and Ruby on Rails. DEV Community © 2016 - 2022.
