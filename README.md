@@ -2,7 +2,7 @@
 
 # Wombat Reference Documentation
 
-## first section
+## Basic Species Description
 
 Wombats dig extensive burrow systems with their rodent-like front teeth and powerful claws. One distinctive adaptation of wombats is their backward pouch. The advantage of a backward-facing pouch is that when digging, the wombat does not gather soil in its pouch over its young. Although mainly crepuscular and nocturnal, wombats may also venture out to feed on cool or overcast days. They are not commonly seen, but leave ample evidence of their passage, treating fences as minor inconveniences to be gone through or under.
 
