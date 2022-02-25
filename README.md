@@ -17,7 +17,7 @@ Wombats leave distinctive cubic feces.[8] As wombats arrange these feces to mark
 
 Here are some links to the most pertinent documentation pertaining to wombats. Great efforts will be made to keep these documents up-to-date with the latest information, but keep in mind that wombats don't always follow the rules :smiling_imp: :
 
-- **Wombat Natural Habitat:** The FedRAMP baselines for High, Moderate, Low, and Tailored for Low Impact-Software as a Service (LI-SaaS) in OSCAL (XML and JSON formats) are available [here](./archives/File README — Documentation for wombat (2.2.1).pdf).
+- **Wombat Natural Habitat:** The FedRAMP baselines for High, Moderate, Low, and Tailored for Low Impact-Software as a Service (LI-SaaS) in OSCAL (XML and JSON formats) are available [here](./archives/File%20README — Documentation for wombat (2.2.1).pdf).
 
 - **FedRAMP OSCAL Templates:** The template files are pre-populated with FedRAMP extensions, defined-identifiers, and conformity tags where practical. They also include sample data, and are the basis for their respective guidance documents above. The drafts for public comment are available in both XML and JSON formats [here](./dist/content/templates/).
 
