@@ -1,6 +1,6 @@
 
 name: test issue or upload
 about: 
-title: ''
+title: 'Upload Files to Review'
 labels: ''
 assignees: none
