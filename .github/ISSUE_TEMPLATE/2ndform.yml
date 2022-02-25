@@ -1,9 +1,9 @@
 name: Tip Request
-description: Request a GitHub Tip from MishManners
+description: Request a GitHub Tip f
 title: "[Tip]: I want "
 labels: [Tip, enhancement]
 assignees:
-  - mishmanners
+  - none
 body:
   - type: markdown
     attributes:
