@@ -24,3 +24,8 @@ Here are some links to the most pertinent documentation pertaining to wombats. G
 - **Wombat Registry** This registry is the authoritative source for all wombat extensions, and accepted values. The draft for public comment is available [here](./archives/WPSA-bare-nosed-fact-sheet-2.pdf).
 
 - **Implementation Guides:** These documents enables tool developers to generate deliverabes that are fully compliant with wombat extensions, defined identifiers, conformity tags, and acceptable values. The drafts for public comment are available [here](./documents/).
+
+
+## Submitting Documents and survey reviews, etc.
+
+Please visit this [github-hosted web form](https://macch33s3.github.io/). When submitting, it will open up your email application. Also, be sure to fill out the fields. There is javascript to check the field inputs, but shouldn't bypass those checks! 
